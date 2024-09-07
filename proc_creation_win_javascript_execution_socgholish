@@ -1,6 +1,6 @@
 title: SocGholish - Execution of Javascript from Windows Scripting Host
 id: e62a9f01-ca1e-46b2-85d5-a6da77f86d15
-status: test
+status: experimental
 description: SocGholish - JavaScript Execution
 references:
     - https://attack.mitre.org/software/S1124/
@@ -8,7 +8,7 @@ author: Riordz
 date: 2024-09-03
 tags:
     - attack.command-and-scripting-interpreter
-    - software.S1124
+    - software.s1124
 logsource:
     category: process_creation
     product: windows
@@ -22,5 +22,5 @@ detection:
           - 'update.js'
     condition: 1 of selection_process and selection_cmdline
 falsepositives:
-    - Windows Scripting Host can also execute legitimate files.
+    - unknown
 level: high
