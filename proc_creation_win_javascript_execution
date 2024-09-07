@@ -1,6 +1,6 @@
 title: ChromeLoader Adware - Node.exe launching Javascript File
 id: e62a9f01-ca1e-46b2-85d5-a6da77f86d14
-status: test
+status: experimental
 description: ChromeLoader - Node.exe executing program 
 references:
     - https://redcanary.com/threat-detection-report/threats/chromeloader/
@@ -21,5 +21,5 @@ detection:
           - 'program.js'
     condition: all of selection_*
 falsepositives:
-    - Node.exe may launch legitimate Javascript Files.
+    - unknown
 level: high
