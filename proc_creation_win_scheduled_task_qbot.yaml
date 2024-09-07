@@ -1,0 +1,28 @@
+title: Qbot - Suspicious Scheduled Task Launching DLL
+id: e62a9f01-ca1e-46b2-85d5-a6da77f66d12
+status: experimental
+description: Detects A Suspicious Scheduled Task Creation Where Regsvr32.exe is executing a DLL
+references:
+    - https://www.uptycs.com/blog/threat-research-report-team/qbot-reappears-now-leveraging-dll-side-loading-technique-to-bypass-detection-mechanisms
+author: Riordz
+date: 2024-09-07
+tags:
+    - attack.persistence
+    - attack.privilege_escalation
+    - attack.t1053.005
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_base:
+        - OriginalFileName: 'schtasks.exe'
+    selection_switches:
+        - CommandLine|contains: 'regsvr32.exe -s' # Running Malicious DLL with -s
+    selection_parameters:
+          - '/create'
+          - '/sc'
+          - '/st'
+    condition: all of selection_base and selection_switches and selection_parameters
+falsepositives:
+    - unknown
+level: high
